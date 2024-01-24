@@ -1,0 +1,45 @@
+version: "3.0"
+
+services:
+  sqlite3:
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./db/:/root/db/
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    container_name: elasticsearch
+    environment:
+      #- node.name=elasticsearch
+      - discovery.seed_hosts=localhost:9201
+      #- cluster.initial_master_nodes=elasticsearch
+      #- discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    
+    ports:
+      - 9201:9200
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+  app:
+    build:
+      context: .
+    restart: always
+    ports:
+      - 5001:5000
+    volumes:
+      - .:/app 
+
+    command: ["python", "app.py"]
+    depends_on:
+      - elasticsearch
+      - sqlite3
+volumes:
+  esdata1:

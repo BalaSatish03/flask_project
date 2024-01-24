@@ -1,0 +1,13 @@
+[   
+    {"name": "satish", "branch": "CSE", "city": "Guntur"},
+    {"name": "venkat", "branch": "IT", "city": "sap"},
+    {"name": "teja", "branch": "AIDS", "city": "vij"},
+    {"name": "alice", "branch": "IT", "city": "san francisco"},
+    {"name": "emma", "branch": "Civil", "city": "paris"},
+    {"name": "david", "branch": "Chemical", "city": "berlin"},
+    {"name": "jane", "branch": "Aerospace", "city": "tokyo"},
+    {"name": "michael", "branch": "Biomedical", "city": "sydney"},
+    {"name": "olivia", "branch": "Electrical", "city": "toronto"},
+    {"name": "peter", "branch": "Computer Science", "city": "seoul","country":"usa"}
+  ]
+  
